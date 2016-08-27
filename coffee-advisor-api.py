@@ -1,10 +1,13 @@
 # coding=utf-8
 import flask
+import yaml
 from flask import Flask, request
 from pymongo import MongoClient
 
+config = yaml.load(file('config.yml'), Loader=yaml.Loader)
+
 app = Flask(__name__)
-client = MongoClient()
+client = MongoClient(host=config['mongo_host'], port=config['mongo_port'])
 db = client.coffee_advisor
 
 
@@ -29,4 +32,4 @@ def post_places():
 
 
 if __name__ == '__main__':
-    app.run(port=12346)
+    app.run(host=config['site_host'], port=config['site_port'])
