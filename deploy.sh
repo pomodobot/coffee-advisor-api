@@ -15,6 +15,7 @@ function excludes {
   done
 }
 
+
 # Run rsync
 function upload_files {
   excludes
