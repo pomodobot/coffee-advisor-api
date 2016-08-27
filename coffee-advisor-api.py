@@ -17,7 +17,7 @@ db = client.coffee_advisor
 @app.route('/api/places', methods=['GET', 'POST'])
 def places():
     if request.method == 'GET':
-        return get_places()
+        return get_places(), 200, {'Content-Type': 'application/json; charset=utf-8'}
     elif request.method == 'POST':
         return post_places()
 
