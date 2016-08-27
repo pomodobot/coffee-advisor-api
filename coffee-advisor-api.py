@@ -2,11 +2,14 @@
 import yaml
 from bson import json_util
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 from pymongo import MongoClient
 
 config = yaml.load(file('config.yml'), Loader=yaml.Loader)
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 client = MongoClient(host=config['mongo_host'], port=config['mongo_port'])
 db = client.coffee_advisor
 
