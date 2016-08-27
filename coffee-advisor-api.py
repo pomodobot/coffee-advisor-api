@@ -1,6 +1,6 @@
 # coding=utf-8
-import flask
 import yaml
+from bson import json_util
 from flask import Flask, request
 from pymongo import MongoClient
 
@@ -20,7 +20,8 @@ def places():
 
 
 def get_places():
-    return flask.jsonify(db.places.find())
+    places = list(db.places.find())
+    return json_util.dumps(places)
 
 
 @app.route('/api/places', methods=['POST'])
