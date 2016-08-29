@@ -6,6 +6,7 @@ import math
 import yaml
 from bson.objectid import ObjectId
 from flask import Flask, request
+from flask.ext.cors import CORS
 from flask_pymongo import PyMongo
 
 from app import get_app
@@ -13,6 +14,8 @@ from app import get_app
 config = yaml.load(file(os.path.dirname(os.path.abspath(__file__)) + '/config.yml'), Loader=yaml.Loader)
 
 app = get_app({})
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 mongo = PyMongo(app)
 
 
@@ -26,7 +29,7 @@ class JSONEncoder(json.JSONEncoder):
 @app.route('/api/places', methods=['GET', 'POST'])
 def places():
     if request.method == 'GET':
-        return get_places()
+        return get_places(), 200, {'Content-Type': 'application/json; charset=utf-8'}
     elif request.method == 'POST':
         return post_places()
 
