@@ -26,8 +26,8 @@ def places():
 
 
 def get_places():
-    lat = float(request.args.get('latitude'))
-    lon = float(request.args.get('longitude'))
+    lat = float(request.args.get('lat'))
+    lon = float(request.args.get('lng'))
     radius = request.args.get('radius') or 5000.0
 
     if not lat or not lon:
@@ -51,8 +51,8 @@ def get_places():
 
     places = list(mongo.db.places.find(
         {
-            "location.latitude": {"$lt": lat0, "$gt": lon0},
-            "location.longitude": {"$lt": lat1, "$gt": lon1}
+            "location.lat": {"$lt": lat0, "$gt": lon0},
+            "location.lng": {"$lt": lat1, "$gt": lon1}
         }))
     return JSONEncoder().encode(places)
 
