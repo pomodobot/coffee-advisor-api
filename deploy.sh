@@ -46,7 +46,8 @@ function up {
 upload_files
 
 if ! $DRY_RUN ; then
-  down
+  # down
+  echo ops
 fi
 
 up

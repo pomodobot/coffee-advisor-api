@@ -1,4 +1,5 @@
 flask
 pymongo
 PyYAML
+Flask-PyMongo
 flask-cors
