@@ -90,3 +90,6 @@ ENV/
 
 # ETC
 .idea/
+
+# Mongodb data files (db)
+data/
